@@ -56,6 +56,11 @@ class PairListFragment : Fragment() {
 
 
     private fun initView() = with(binding) {
+        swipeRefreshLayout.setOnRefreshListener {
+            swipeRefreshLayout.isRefreshing = false
+            viewModel.fetch()
+        }
+
         rvFavorites.adapter = favoriteListAdapter
         rvPairs.adapter = pairListAdapter
     }
