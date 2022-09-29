@@ -24,7 +24,7 @@
         tools:layout="@layout/fragment_pair_chart">
 
         <argument
-            android:name="id"
+            android:name="pair_name"
             app:argType="string" />
 
     </fragment>

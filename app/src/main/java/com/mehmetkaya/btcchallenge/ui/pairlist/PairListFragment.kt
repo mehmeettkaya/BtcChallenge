@@ -7,8 +7,10 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import com.mehmetkaya.btcchallenge.R
 import com.mehmetkaya.btcchallenge.databinding.FragmentPairListBinding
+import com.mehmetkaya.btcchallenge.ui.pairlist.PairListUiEvent.NavigateToPairChart
 import com.mehmetkaya.btcchallenge.utils.collectEvent
 import com.mehmetkaya.btcchallenge.utils.collectState
 import com.mehmetkaya.btcchallenge.utils.viewBinding
@@ -22,13 +24,16 @@ class PairListFragment : Fragment() {
     private val viewModel: PairListViewModel by viewModels()
 
     private val pairListAdapter: PairListAdapter by lazy {
-        PairListAdapter(onFavoriteClicked = {
-            viewModel.onFavoriteClicked(it)
-        })
+        PairListAdapter(
+            onFavoriteClicked = { viewModel.onFavoriteClicked(it) },
+            onItemClicked = { viewModel.onPairClicked(it.ticker.pair) },
+        )
     }
 
     private val favoriteListAdapter: FavoriteListAdapter by lazy {
-        FavoriteListAdapter()
+        FavoriteListAdapter {
+            viewModel.onPairClicked(it.favorite.pairName)
+        }
     }
 
     override fun onCreateView(
@@ -63,7 +68,10 @@ class PairListFragment : Fragment() {
 
     private fun handleEvent(uiEvent: PairListUiEvent) {
         when (uiEvent) {
-            else -> Unit
+            is NavigateToPairChart -> {
+                val directions = PairListFragmentDirections.navigateToPairChart(uiEvent.pairName)
+                findNavController().navigate(directions)
+            }
         }
     }
 }

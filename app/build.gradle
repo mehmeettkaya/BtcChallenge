@@ -60,6 +60,9 @@ dependencies {
     // Material
     implementation 'com.google.android.material:material:1.6.1'
 
+    // MPAndroidChart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
     // Hilt
     implementation 'com.google.dagger:hilt-android:2.41'
     kapt 'com.google.dagger:hilt-compiler:2.41'

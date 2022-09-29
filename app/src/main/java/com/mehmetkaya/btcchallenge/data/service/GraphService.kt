@@ -8,9 +8,9 @@ interface GraphService {
 
     @GET("v1/klines/history")
     suspend fun getKlineData(
-        @Query("from") from: String,
-        @Query("resolution") resolution: String,
+        @Query("from") from: Long,
+        @Query("resolution") resolution: Int,
         @Query("symbol") symbol: String,
-        @Query("to") to: String
+        @Query("to") to: Long
     ): KlineDataResponse
 }

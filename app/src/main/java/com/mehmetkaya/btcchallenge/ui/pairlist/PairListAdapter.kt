@@ -17,7 +17,7 @@ import kotlin.math.absoluteValue
 
 class PairListAdapter(
     private val onFavoriteClicked: ((PairItem) -> Unit)? = null,
-    private val onItemClicked: ((String) -> Unit)? = null
+    private val onItemClicked: ((PairItem) -> Unit)? = null
 ) : ListAdapter<PairListItems, ViewHolder>(PairListDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
@@ -79,6 +79,10 @@ class PairListAdapter(
             tvVolumeAndNumeratorName.apply {
                 val formattedVolume = context.getString(R.string.value_format, item.ticker.volume)
                 text = "$formattedVolume ${item.ticker.numeratorSymbol}"
+            }
+
+            root.setOnClickListener {
+                onItemClicked?.invoke(item)
             }
         }
     }

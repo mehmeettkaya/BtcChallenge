@@ -13,10 +13,10 @@ class GraphRepository @Inject constructor(
 ) {
 
     suspend fun getKlineData(
-        from: String,
-        resolution: String,
+        from: Long,
+        resolution: Int,
         symbol: String,
-        to: String
+        to: Long
     ): KlineDataResponse {
         return runCatching {
             graphService.getKlineData(from, resolution, symbol, to)

@@ -16,7 +16,7 @@ import com.mehmetkaya.btcchallenge.utils.inflater
 import kotlin.math.absoluteValue
 
 class FavoriteListAdapter(
-    private val onItemClicked: ((String) -> Unit)? = null
+    private val onItemClicked: ((FavoriteItem) -> Unit)? = null
 ) : ListAdapter<FavoriteListItems, ViewHolder>(FavoriteListDiffCallback) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = when (viewType) {
@@ -69,6 +69,10 @@ class FavoriteListAdapter(
             tvDailyPercent.apply {
                 text = context.getString(R.string.percentage_format, item.dailyPercent)
                 setTextColor(ContextCompat.getColor(context, item.dailyPercentColorResId))
+            }
+
+            root.setOnClickListener {
+                onItemClicked?.invoke(item)
             }
         }
     }

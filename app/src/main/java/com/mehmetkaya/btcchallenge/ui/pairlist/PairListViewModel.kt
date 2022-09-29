@@ -7,6 +7,7 @@ import com.mehmetkaya.btcchallenge.domain.usecase.*
 import com.mehmetkaya.btcchallenge.ui.pairlist.FavoriteListAdapter.FavoriteListItems.FavoriteItem
 import com.mehmetkaya.btcchallenge.ui.pairlist.PairListAdapter.PairListItems.InfoItem
 import com.mehmetkaya.btcchallenge.ui.pairlist.PairListAdapter.PairListItems.PairItem
+import com.mehmetkaya.btcchallenge.ui.pairlist.PairListUiEvent.NavigateToPairChart
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -64,6 +65,13 @@ class PairListViewModel @Inject constructor(
                 .onSuccess { }
                 .onFailure { showError(it) }
                 .also { showLoading(isLoading = false) }
+        }
+    }
+
+    fun onPairClicked(pairName: String) {
+        viewModelScope.launch {
+            val event = NavigateToPairChart(pairName.replace("_", ""))
+            _uiEvent.emit(event)
         }
     }
 

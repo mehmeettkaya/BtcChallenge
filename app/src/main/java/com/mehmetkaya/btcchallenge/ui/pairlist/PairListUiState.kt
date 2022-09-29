@@ -7,7 +7,6 @@ import com.mehmetkaya.btcchallenge.ui.pairlist.PairListAdapter.PairListItems
 import com.mehmetkaya.btcchallenge.ui.pairlist.PairListAdapter.PairListItems.PairItem
 
 data class PairListUiState(
-    val isLoading: Boolean = false,
     val favoriteItems: List<FavoriteListItems> = emptyList(),
     val pairItems: List<PairListItems> = emptyList()
 ) {

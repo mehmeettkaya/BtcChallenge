@@ -4,12 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/bg_favorite_item.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/bg_oval_marker.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/bg_pair_chart.xml" value="0.2145" />
         <entry key="app/src/main/res/drawable/bg_ticker_item.xml" value="0.2145" />
+        <entry key="app/src/main/res/drawable/oval_market.xml" value="0.2145" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/fragment_pair_chart.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/fragment_pair_list.xml" value="0.21822916666666667" />
         <entry key="app/src/main/res/layout/item_favorite.xml" value="0.4036458333333333" />
         <entry key="app/src/main/res/layout/item_pair.xml" value="0.4036458333333333" />
+        <entry key="app/src/main/res/layout/view_marker.xml" value="0.13333333333333333" />
+        <entry key="app/src/main/res/layout/view_market.xml" value="0.4036458333333333" />
       </map>
     </option>
   </component>
