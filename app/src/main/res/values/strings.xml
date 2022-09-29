@@ -2,10 +2,6 @@
     <string name="app_name">BtcChallenge</string>
     <string name="favorites">Favorites</string>
     <string name="pairs">Pairs</string>
-    <string name="pair_name">PairName</string>
-    <string name="last">Last</string>
-    <string name="daily_percent">DailyPercent</string>
-    <string name="volume_and_numerator_name">Volume + NumeratorName</string>
     <string name="percentage_format">%%%1$.2f</string>
     <string name="value_format">%1$.3f</string>
 </resources>

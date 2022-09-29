@@ -4,15 +4,13 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mehmetkaya.btcchallenge.domain.model.Ticker
 import com.mehmetkaya.btcchallenge.domain.usecase.*
-import com.mehmetkaya.btcchallenge.ui.pairlist.FavoriteListAdapter.FavoriteListItems.FavoriteItem
-import com.mehmetkaya.btcchallenge.ui.pairlist.PairListAdapter.PairListItems.InfoItem
-import com.mehmetkaya.btcchallenge.ui.pairlist.PairListAdapter.PairListItems.PairItem
+import com.mehmetkaya.btcchallenge.ui.pairlist.FavoriteListAdapter.FavoriteListItem
+import com.mehmetkaya.btcchallenge.ui.pairlist.PairListAdapter.PairListItem
 import com.mehmetkaya.btcchallenge.ui.pairlist.PairListUiEvent.NavigateToPairChart
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
-import com.mehmetkaya.btcchallenge.ui.pairlist.FavoriteListAdapter.FavoriteListItems.InfoItem as FavoriteInfoItem
 
 @HiltViewModel
 class PairListViewModel @Inject constructor(
@@ -32,10 +30,7 @@ class PairListViewModel @Inject constructor(
 
     init {
         fetchFavoriteList()
-            .map {
-                val favoriteItems = it.map(::FavoriteItem)
-                _uiState.value.copy(favoriteItems = listOf(FavoriteInfoItem) + favoriteItems)
-            }
+            .map { _uiState.value.copy(favoriteItems = it.map(::FavoriteListItem)) }
             .onEach { state -> _uiState.emit(state).also { updatePairList(state.tickers) } }
             .launchIn(viewModelScope)
     }
@@ -51,7 +46,7 @@ class PairListViewModel @Inject constructor(
         }
     }
 
-    fun onFavoriteClicked(pairItem: PairItem) {
+    fun onFavoriteClicked(pairItem: PairListItem) {
         viewModelScope.launch {
             showLoading(isLoading = true)
 
@@ -77,8 +72,8 @@ class PairListViewModel @Inject constructor(
 
     private fun updatePairList(tickers: List<Ticker>) {
         _uiState.update { state ->
-            val pairItems = tickers.map { PairItem(it, state.isFavorite(it.pairNormalized)) }
-            state.copy(pairItems = listOf(InfoItem) + pairItems)
+            val pairItems = tickers.map { PairListItem(it, state.isFavorite(it.pairNormalized)) }
+            state.copy(pairItems = pairItems)
         }
     }
 }
