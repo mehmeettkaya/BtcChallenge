@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.mehmetkaya.btcchallenge.R
@@ -20,6 +21,16 @@ class PairListFragment : Fragment() {
 
     private val viewModel: PairListViewModel by viewModels()
 
+    private val pairListAdapter: PairListAdapter by lazy {
+        PairListAdapter(onFavoriteClicked = {
+            viewModel.onFavoriteClicked(it)
+        })
+    }
+
+    private val favoriteListAdapter: FavoriteListAdapter by lazy {
+        FavoriteListAdapter()
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -33,13 +44,21 @@ class PairListFragment : Fragment() {
         collectEvent(viewModel.uiEvent, ::handleEvent)
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.fetch()
+    }
+
 
     private fun initView() = with(binding) {
-
+        rvFavorites.adapter = favoriteListAdapter
+        rvPairs.adapter = pairListAdapter
     }
 
     private fun renderView(uiState: PairListUiState) = with(binding) {
-
+        favoriteListAdapter.submitList(uiState.favoriteItems)
+        pairListAdapter.submitList(uiState.pairItems)
+        clFavorites.isVisible = uiState.isFavoriteLayoutVisible
     }
 
     private fun handleEvent(uiEvent: PairListUiEvent) {

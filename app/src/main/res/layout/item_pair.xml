@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_ticker_item"
+    tools:background="@color/mirage">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/ivFavorite"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:padding="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/ic_yellow_star" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvPairName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:textColor="@color/alabaster"
+        android:textSize="16sp"
+        app:layout_constraintStart_toEndOf="@id/ivFavorite"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="ETH/USDT" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvLast"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:textColor="@color/alabaster"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/tvDailyPercent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="3,469" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvDailyPercent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="@id/tvLast"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tvLast"
+        tools:text="%10,25"
+        tools:textColor="@color/thunderbird" />
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/tvVolumeAndNumeratorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/manatee"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvLast"
+        tools:text="35,10 ETH" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
