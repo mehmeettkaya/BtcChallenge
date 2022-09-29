@@ -28,6 +28,13 @@ class FavoriteRepository @Inject constructor(
     }
 
     @WorkerThread
+    suspend fun updatePair(favoriteEntities: List<FavoriteEntity>) {
+        runCatching {
+            favoriteDao.updateFavorite(favoriteEntities)
+        }.onFailure { throw handleException(it) }
+    }
+
+    @WorkerThread
     suspend fun unFavoritePair(pairName: String) {
         runCatching {
             favoriteDao.deleteFavorite(pairName)

@@ -14,7 +14,7 @@ class FetchFavoriteList @Inject constructor(
 ) {
 
     operator fun invoke(): Flow<List<Favorite>> {
-        return favoriteRepository.getAllFavorites()
-            .map { it.map { favoriteEntity -> favoriteEntity.mapWith(favoriteMapper) } }
+        val entities = favoriteRepository.getAllFavorites()
+        return entities.map { it.map { entity -> entity.mapWith(favoriteMapper) } }
     }
 }

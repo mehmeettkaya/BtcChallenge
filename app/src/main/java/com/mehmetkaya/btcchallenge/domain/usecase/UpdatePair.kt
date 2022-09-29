@@ -6,13 +6,13 @@ import com.mehmetkaya.btcchallenge.domain.model.Ticker
 import com.mehmetkaya.btcchallenge.utils.mapWith
 import javax.inject.Inject
 
-class FavoritePair @Inject constructor(
+class UpdatePair @Inject constructor(
     private val favoriteRepository: FavoriteRepository,
     private val pairMapper: PairMapper
 ) {
 
-    suspend operator fun invoke(ticker: Ticker) = with(ticker) {
-        val favoriteEntity = ticker.mapWith(pairMapper)
-        favoriteRepository.favoritePair(favoriteEntity)
+    suspend operator fun invoke(ticker: List<Ticker>) = with(ticker) {
+        val favoriteEntities = ticker.map { it.mapWith(pairMapper) }
+        favoriteRepository.updatePair(favoriteEntities)
     }
 }
