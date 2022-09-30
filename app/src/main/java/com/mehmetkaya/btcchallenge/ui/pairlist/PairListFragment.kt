@@ -54,7 +54,6 @@ class PairListFragment : Fragment() {
         viewModel.fetch()
     }
 
-
     private fun initView() = with(binding) {
         swipeRefreshLayout.setOnRefreshListener {
             swipeRefreshLayout.isRefreshing = false
